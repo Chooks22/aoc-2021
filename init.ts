@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import { existsSync } from 'fs';
 import fs from 'fs/promises';
 import path from 'path';
 import pc from 'picocolors';
@@ -31,14 +32,15 @@ async function main(day: string) {
   await createProject(day, input);
 
   const end = Date.now() - start;
-  console.info(pc.green('SUCCESS'), `Day ${day} initialized. Time took: ${end}ms`);
+  console.info(pc.green('success'), `Day ${day} initialized. Time took: ${end}ms`);
 }
 
-const day = process.argv[2];
+const date = String(new Date().getDate());
 
-if (isNaN(day as never)) {
-  console.error(pc.red('ERROR'), 'No valid day was provided!');
+if (existsSync(`./day${date}`)) {
+  console.error(pc.red('error'), 'Folder already initialized!');
   process.exit(1);
 }
 
-main(day);
+process.env.TZ = 'EST';
+main(date);
