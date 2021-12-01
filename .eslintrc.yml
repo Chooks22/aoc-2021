@@ -1,0 +1,11 @@
+---
+env:
+  node: true
+extends:
+  - "@chookslint/typescript"
+parserOptions:
+  project: ./tsconfig.json
+rules:
+  "@typescript-eslint/naming-convention": off
+  func-style: off
+  sort-imports: off
