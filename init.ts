@@ -29,7 +29,7 @@ async function main(day: string) {
   const input = await fetchInput(day);
 
   console.info('Creating project files...');
-  await createProject(day, input);
+  await createProject(day, input.trim());
 
   const end = Date.now() - start;
   console.info(pc.green('success'), `Day ${day} initialized. Time took: ${end}ms`);
